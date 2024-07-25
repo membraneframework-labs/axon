@@ -1387,7 +1387,8 @@ defmodule Axon.Layers do
         }
 
       :inference ->
-        normalize(input, ra_mean, ra_var, gamma, beta, epsilon: eps)
+        {new_mean, new_var} = mean_and_variance(input, axes: axes)
+        normalize(input, new_mean, new_var, gamma, beta, epsilon: eps)
     end
   end
 
